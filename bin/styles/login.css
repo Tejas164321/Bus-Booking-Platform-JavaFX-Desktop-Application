@@ -1,0 +1,74 @@
+/* JavaFX CSS - Add this line to disable warnings */
+/* Background Overlay */
+.root {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Login Card */
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 40 50 50 50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 0);
+    -fx-min-width: 380;
+}
+
+/* Text Styles */
+.login-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.login-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Form Elements */
+.form-container {
+    -fx-min-width: 300;
+}
+
+.auth-input {
+    -fx-background-color: #f5f6fa;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-pref-height: 45;
+    -fx-font-size: 14px;
+}
+
+.auth-input:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+}
+
+.auth-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-pref-width: 300;
+    -fx-pref-height: 45;
+    -fx-cursor: hand;
+}
+
+.auth-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.auth-link {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+}
+
+.auth-link:hover {
+    -fx-text-fill: #3498db;
+}
+
+.separator {
+    -fx-text-fill: #bdc3c7;
+}

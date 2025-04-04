@@ -1,0 +1,114 @@
+/* JavaFX CSS - Add this line to disable warnings */
+
+.main-container {
+    -fx-padding: 25px;
+    -fx-background-color: #F8F9FA;
+}
+
+/* Header Styles */
+.header-box {
+    -fx-padding: 0 0 20px 0;
+}
+
+
+
+.back-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+/* Form Section */
+.form-section {
+    -fx-spacing: 15px;
+}
+
+.form-card {
+    -fx-padding: 25px;
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+/* Modern Table */
+.modern-table {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+.modern-table .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.modern-table .table-row-cell:even {
+    -fx-background-color: #F8F9FA;
+}
+
+
+
+/* Seat Grid */
+.modern-seat-grid {
+    -fx-padding: 15px;
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: #0873c4;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 8px;
+}
+
+
+
+/* Section Titles */
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0873c4;
+    -fx-padding: 0 0 15px 0;
+}
+
+
+
+
+.confirm-button {
+    -fx-font-size: 16px;
+    -fx-padding: 12px 40px;
+    -fx-background-radius: 8px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 20px;
+}
+
+.details-seat-container {
+    -fx-padding: 20px 0;
+    -fx-alignment: center;
+}
+
+.details-card {
+    -fx-min-width: 300px;
+    -fx-max-width: 300px;
+}
+
+.seat-container {
+    -fx-min-width: 300px;
+    -fx-max-width: 300px;
+}

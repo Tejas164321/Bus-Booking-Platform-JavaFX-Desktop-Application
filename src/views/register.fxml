@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.RegisterController">
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" layoutX="150.0" layoutY="100.0" prefWidth="300" prefHeight="320">
+            <Label text="Register New Account" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <TextField fx:id="usernameField" promptText="Username" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" />
+            <Button text="Register" onAction="#handleRegister" prefWidth="100" />
+            <Hyperlink text="Already have an account? Login" onAction="#goToLogin" />
+        </VBox>
+    </children>
+</AnchorPane>

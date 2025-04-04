@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/21" 
+           xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="controllers.LoginController">
+    <!-- Login Card -->
+    <VBox styleClass="login-card" alignment="CENTER" spacing="25">
+        <!-- Logo -->
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+            <Image url="@../images/bus-logo.png" />
+        </ImageView>
+        
+        <!-- Title -->
+        <Label text="Welcome Back" styleClass="login-title"/>
+        <Label text="Sign in to continue" styleClass="login-subtitle"/>
+        
+        <!-- Form -->
+        <VBox spacing="15" alignment="CENTER" styleClass="form-container">
+            <TextField fx:id="usernameField" styleClass="auth-input" promptText="Email or Username">
+                <padding><Insets left="15"/></padding>
+            </TextField>
+            
+            <PasswordField fx:id="passwordField" styleClass="auth-input" promptText="Password">
+                <padding><Insets left="15"/></padding>
+            </PasswordField>
+            
+            <Button text="LOGIN" styleClass="auth-button" onAction="#handleLogin" />
+            
+            <!-- Footer Links -->
+            <HBox spacing="10" alignment="CENTER">
+                <Hyperlink text="Forgot Password?" styleClass="auth-link" />
+                <Label text="•" styleClass="separator"/>
+                <Hyperlink text="Create Account" styleClass="auth-link" onAction="#goToRegister"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</StackPane>

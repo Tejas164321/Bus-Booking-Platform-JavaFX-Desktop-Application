@@ -1,0 +1,12 @@
+{
+    "java.project.sourcePaths": [
+        "src",
+        "lib/javafx-sdk-21.0.6"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "lib/mysql-connector-j-8.0.33.jar"
+    ],
+    "java.debug.settings.vmArgs": "--module-path C:\\Users\\tejas\\busbookingsystem\\lib\\javafx-sdk-21.0.6\\lib --add-modules javafx.controls,javafx.fxml"
+}

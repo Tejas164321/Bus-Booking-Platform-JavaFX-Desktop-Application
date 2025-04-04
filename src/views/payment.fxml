@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controllers.PaymentController" 
+            prefWidth="600" prefHeight="500" 
+            style="-fx-background-color: #f5f5f5;">
+
+    <fx:define>
+        <ToggleGroup fx:id="paymentMethodGroup"/>
+    </fx:define>
+
+    <VBox spacing="20" layoutX="20" layoutY="20" prefWidth="560">
+        <!-- Payment Header -->
+        <Label text="Secure Payment Gateway" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </Label>
+
+        <!-- Billing Summary -->
+        <GridPane style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5;">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="100"/>
+                <ColumnConstraints prefWidth="200"/>
+            </columnConstraints>
+            
+            <rowConstraints>
+                <RowConstraints prefHeight="30"/>
+                <RowConstraints prefHeight="30"/>
+                <RowConstraints prefHeight="30"/>
+                <RowConstraints prefHeight="30"/>
+            </rowConstraints>
+
+            <Label text="Billing Summary" style="-fx-font-size: 18px; -fx-font-weight: bold;" 
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+            
+            <Label text="Bus Details:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="lblBusDetails" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="Selected Seats:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="lblSeats" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="Total Amount:" GridPane.columnIndex="0" GridPane.rowIndex="3" 
+                   style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblTotalAmount" GridPane.columnIndex="1" GridPane.rowIndex="3" 
+                   style="-fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </GridPane>
+
+        <!-- Payment Methods -->
+        <TitledPane text="Select Payment Method" animated="false" 
+                    style="-fx-font-size: 16px; -fx-border-color: #bdc3c7;">
+            <VBox spacing="15" style="-fx-padding: 15;">
+                <RadioButton fx:id="rbUPI" text="UPI Payment" toggleGroup="$paymentMethodGroup" 
+                            style="-fx-font-size: 14px;">
+                    <VBox.margin>
+                        <Insets left="20"/>
+                    </VBox.margin>
+                </RadioButton>
+                
+                <VBox fx:id="upiForm" visible="false" spacing="10" style="-fx-padding: 0 0 0 40;">
+                    <TextField fx:id="txtUPIId" promptText="Enter UPI ID"/>
+                </VBox>
+
+                <RadioButton fx:id="rbCard" text="Credit/Debit Card" toggleGroup="$paymentMethodGroup" 
+                            style="-fx-font-size: 14px;">
+                    <VBox.margin>
+                        <Insets left="20"/>
+                    </VBox.margin>
+                </RadioButton>
+                
+                <VBox fx:id="cardForm" visible="false" spacing="10" style="-fx-padding: 0 0 0 40;">
+                    <TextField fx:id="txtCardNumber" promptText="Card Number"/>
+                    <HBox spacing="10">
+                        <TextField fx:id="txtExpiry" promptText="MM/YY" prefWidth="100"/>
+                        <TextField fx:id="txtCVV" promptText="CVV" prefWidth="80"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </TitledPane>
+
+        <!-- Pay Now Button -->
+        <Button fx:id="btnPayNow" text="Pay Now" onAction="#processPayment" 
+                style="-fx-font-size: 16px; -fx-background-color: #3498db; -fx-text-fill: white;"
+                prefWidth="200">
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+        </Button>
+    </VBox>
+</AnchorPane>
