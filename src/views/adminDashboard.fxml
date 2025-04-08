@@ -62,7 +62,7 @@
                         </tooltip>
                     </ComboBox>
                 </HBox>
-ttet
+
                 <TableView fx:id="busTable" prefWidth="820" prefHeight="500" style="-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #ffffff;">
                     <columns>
                         <TableColumn fx:id="idCol" text="Bus ID" prefWidth="50" />

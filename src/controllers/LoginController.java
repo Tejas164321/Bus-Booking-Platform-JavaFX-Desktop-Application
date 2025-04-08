@@ -15,6 +15,9 @@ import javafx.scene.Scene;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class LoginController {
@@ -23,27 +26,31 @@ public class LoginController {
     @FXML private PasswordField passwordField;
     @FXML private Hyperlink goToRegister;
 
-    @FXML
-    public void handleLogin(ActionEvent event) {
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
+ @FXML
+public void handleLogin(ActionEvent event) {
+    String username = usernameField.getText().trim();
+    String password = passwordField.getText().trim();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            showAlert("Input Error", "Please fill in all fields.");
-            return;
-        }
+    if (username.isEmpty() || password.isEmpty()) {
+        showAlert("Input Error", "Please fill in all fields.");
+        return;
+    }
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT user_id, isAdmin FROM users WHERE username = ? AND password = ?";
-            PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, username);
-            pst.setString(2, password);
-            
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                int userId = rs.getInt("user_id");
-                boolean isAdmin = rs.getBoolean("isAdmin");
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        // Get stored hash and user details
+        String query = "SELECT user_id, password, isAdmin FROM users WHERE username = ?";
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, username);
+        
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            String storedHash = rs.getString("password");
+            int userId = rs.getInt("user_id");
+            boolean isAdmin = rs.getBoolean("isAdmin");
 
+            // Verify password against stored hash
+            if (BCrypt.checkpw(password, storedHash)) {
+                // Successful login
                 if (isAdmin) {
                     loadDashboard("/views/adminDashboard.fxml", userId, username);
                 } else {
@@ -52,12 +59,14 @@ public class LoginController {
             } else {
                 showAlert("Error", "Invalid username or password.");
             }
-        } catch (Exception e) {
-            showAlert("Database Error", "Login failed: " + e.getMessage());
-            e.printStackTrace();
+        } else {
+            showAlert("Error", "User not found.");
         }
+    } catch (SQLException e) {
+        showAlert("Database Error", "Login failed: " + e.getMessage());
+        e.printStackTrace();
     }
-
+}
     private void loadDashboard(String fxmlPath, int userId, String username) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
