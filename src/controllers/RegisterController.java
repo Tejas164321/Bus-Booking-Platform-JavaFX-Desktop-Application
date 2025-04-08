@@ -14,6 +14,10 @@ import javafx.scene.Scene;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 public class RegisterController {
 
@@ -29,38 +33,59 @@ public class RegisterController {
     @FXML
     private Hyperlink goToLogin;
 
-    @FXML
-    public void handleRegister(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
+   @FXML
+public void handleRegister(ActionEvent event) {
+    String username = usernameField.getText().trim();
+    String password = passwordField.getText().trim();
+    String confirmPassword = confirmPasswordField.getText().trim();
 
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert("Error", "Please fill in all fields.");
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            showAlert("Error", "Passwords do not match.");
-            return;
-        }
-        Connection conn = DatabaseConnection.getConnection();
-
-        try {
-            String query = "INSERT INTO users (username, password, isAdmin) VALUES (?, ?, 0)";
-            PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, username);
-            pst.setString(2, password);
-            pst.executeUpdate();
-
-            showAlert("Success", "Registration successful! Please login.");
-            loadScene("/views/login.fxml");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Error", "Registration failed. User might already exist.");
-        }
+    // Input validation
+    if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        showAlert("Error", "Please fill in all fields.");
+        return;
     }
+
+    if (!password.equals(confirmPassword)) {
+        showAlert("Error", "Passwords do not match.");
+        return;
+    }
+
+    // Password strength validation (optional)
+    if (password.length() < 8) {
+        showAlert("Error", "Password must be at least 8 characters long.");
+        return;
+    }
+
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        // Check if username already exists
+        String checkUserQuery = "SELECT username FROM users WHERE username = ?";
+        PreparedStatement checkStmt = conn.prepareStatement(checkUserQuery);
+        checkStmt.setString(1, username);
+        ResultSet rs = checkStmt.executeQuery();
+
+        if (rs.next()) {
+            showAlert("Error", "Username already exists.");
+            return;
+        }
+
+        // Hash the password before storing
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        // Insert new user with hashed password
+        String insertQuery = "INSERT INTO users (username, password, isAdmin) VALUES (?, ?, 0)";
+        PreparedStatement pst = conn.prepareStatement(insertQuery);
+        pst.setString(1, username);
+        pst.setString(2, hashedPassword); // Store the HASHED password
+        pst.executeUpdate();
+
+        showAlert("Success", "Registration successful! Please login.");
+        loadScene("/views/login.fxml");
+
+    } catch (SQLException e) {
+        showAlert("Database Error", "Registration failed: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 
     @FXML
     public void goToLogin(ActionEvent event) {

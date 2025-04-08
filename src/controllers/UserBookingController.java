@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import models.Bus;
 import java.io.IOException;
 import java.sql.*;
+import database.DatabaseConnection;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UserBookingController {
@@ -40,11 +41,7 @@ public class UserBookingController {
     private String loggedInUsername;
 
     public UserBookingController() {
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bus_booking", "root", "Tejas@1234");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        conn = DatabaseConnection.getConnection();
     }
 
     @FXML
@@ -120,12 +117,18 @@ public class UserBookingController {
 
     @FXML
     public void searchBuses(ActionEvent event) {
-        String source = sourceField.getText();
-        String destination = destinationField.getText();
+        String source = sourceField.getText().trim();
+        String destination = destinationField.getText().trim();
         String travelDate = (travelDatePicker.getValue() != null) ? travelDatePicker.getValue().toString() : "";
 
         if (source.isEmpty() || destination.isEmpty() || travelDate.isEmpty()) {
             showAlert("Error", "Please enter all travel details!");
+            return;
+        }
+
+        // Validate input to prevent SQL injection
+        if (!source.matches("[a-zA-Z ]+") || !destination.matches("[a-zA-Z ]+")) {
+            showAlert("Error", "Invalid characters in source or destination");
             return;
         }
 
