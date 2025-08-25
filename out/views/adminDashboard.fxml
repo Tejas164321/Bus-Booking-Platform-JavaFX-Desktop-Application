@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AdminController" prefWidth="1000" prefHeight="600">
+    <children>
+        <HBox spacing="40" layoutX="20" layoutY="20" alignment="TOP_LEFT">
+            <!-- Sidebar with admin actions -->
+            <VBox alignment="CENTER" spacing="15" prefWidth="250" prefHeight="560" style="-fx-background-color: #f0f2f5; -fx-padding: 20; -fx-border-color: #dcdcdc; -fx-border-radius: 8; -fx-background-radius: 8;">
+                <Label text="Admin Panel" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+                <Button text="Add Bus" onAction="#handleAddBus" prefWidth="180">
+                    <tooltip>
+                        <Tooltip text="Add new bus details" />
+                    </tooltip>
+                </Button>
+
+                <Button text="Delete Bus" onAction="#handleDeleteBus" prefWidth="180">
+                    <tooltip>
+                        <Tooltip text="Delete selected bus" />
+                    </tooltip>
+                </Button>
+
+                <Button text="Add Schedule" onAction="#handleAddSchedule" prefWidth="180">
+                    <tooltip>
+                        <Tooltip text="Add travel schedule for a bus" />
+                    </tooltip>
+                </Button>
+
+                <Button text="Delete Schedule" onAction="#handleDeleteSchedule" prefWidth="180">
+                    <tooltip>
+                        <Tooltip text="Delete schedule for selected bus" />
+                    </tooltip>
+                </Button>
+
+                <Separator prefWidth="180" />
+
+                <Button text="Refresh Bus List" onAction="#handleRefreshBusList" prefWidth="180" style="-fx-background-color: #28a745; -fx-text-fill: white;">
+                    <tooltip>
+                        <Tooltip text="Reload all bus records" />
+                    </tooltip>
+                </Button>
+
+                <Separator prefWidth="180" />
+
+                <Button text="Logout" onAction="#handleLogout" prefWidth="180" style="-fx-background-color: #dc3545; -fx-text-fill: white;">
+                    <tooltip>
+                        <Tooltip text="Logout from Admin Panel" />
+                    </tooltip>
+                </Button>
+            </VBox>
+
+            <!-- Main content area -->
+            <VBox spacing="15" prefWidth="820" prefHeight="560">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Filter Schedules:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <ComboBox fx:id="dateFilterCombo" prefWidth="160" promptText="Select Filter">
+                        <tooltip>
+                            <Tooltip text="Choose to filter by Today, Tomorrow, or Onward" />
+                        </tooltip>
+                    </ComboBox>
+                </HBox>
+
+                <TableView fx:id="busTable" prefWidth="820" prefHeight="500" style="-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #ffffff;">
+                    <columns>
+                        <TableColumn fx:id="idCol" text="Bus ID" prefWidth="50" />
+                        <TableColumn fx:id="nameCol" text="Bus Name" prefWidth="150" />
+                        <TableColumn fx:id="sourceCol" text="Source" prefWidth="120" />
+                        <TableColumn fx:id="destCol" text="Destination" prefWidth="120" />
+                        <TableColumn fx:id="timeCol" text="Departure Time" prefWidth="120" />
+                        <TableColumn fx:id="seatsCol" text="Seats" prefWidth="70" />
+                        <TableColumn fx:id="priceCol" text="Price (₹)" prefWidth="80" />
+                        <TableColumn fx:id="dateCol" text="Travel Date" prefWidth="120" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </children>
+</AnchorPane>

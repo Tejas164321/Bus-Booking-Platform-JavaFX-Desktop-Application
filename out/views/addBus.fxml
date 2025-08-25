@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddBusController" prefWidth="1000" prefHeight="600">
+    <children>
+        <HBox spacing="50" layoutX="30" layoutY="30" alignment="CENTER_LEFT">
+            <!-- VBox for input form -->
+            <VBox alignment="CENTER" spacing="15" prefWidth="250" prefHeight="500" 
+                  style="-fx-background-color: #f8f8f8; -fx-padding: 20; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10;">
+                
+                <Label text="Add New Bus" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+                <TextField fx:id="busNameField" promptText="Bus Name" prefWidth="200"/>
+                <TextField fx:id="sourceField" promptText="Source" prefWidth="200"/>
+                <TextField fx:id="destinationField" promptText="Destination" prefWidth="200"/>
+                <TextField fx:id="timeField" promptText="Time" prefWidth="200"/>
+                <TextField fx:id="seatsField" promptText="Seats" prefWidth="200"/>
+                <TextField fx:id="priceField" promptText="Price" prefWidth="200"/>
+                <TextField fx:id="dateField" promptText="Date" prefWidth="200"/>
+
+                <Button text="Add Bus" onAction="#handleAddBus" prefWidth="200" 
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;">
+                    <tooltip><Tooltip text="Add this bus route"/></tooltip>
+                </Button>
+                
+                <Button text="Back to Dashboard" onAction="#handleBack" prefWidth="200" 
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white;">
+                    <tooltip><Tooltip text="Return to admin dashboard"/></tooltip>
+                </Button>
+            </VBox>
+
+            <!-- TableView on the right -->
+            <TableView fx:id="busTable" prefWidth="740" prefHeight="500" editable="true"
+                       style="-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #ffffff;">
+                <columns>
+                    <TableColumn fx:id="idCol" text="Bus ID" prefWidth="50"/>
+                    <TableColumn fx:id="nameCol" text="Bus Name" prefWidth="150"/>
+                    <TableColumn fx:id="sourceCol" text="Source" prefWidth="100"/>
+                    <TableColumn fx:id="destCol" text="Destination" prefWidth="100"/>
+                    <TableColumn fx:id="timeCol" text="Departure Time" prefWidth="150"/>
+                    <TableColumn fx:id="seatsCol" text="Seats" prefWidth="80"/>
+                    <TableColumn fx:id="priceCol" text="Price" prefWidth="80"/>
+                    <TableColumn fx:id="editCol" text="Edit" prefWidth="80"/>
+                </columns>
+            </TableView>
+        </HBox>
+    </children>
+</AnchorPane>
