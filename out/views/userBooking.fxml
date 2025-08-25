@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<ScrollPane fitToWidth="true" stylesheets="@../styles/booking.css"
+            fx:controller="controllers.UserBookingController"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+    
+    <VBox styleClass="container" spacing="20" alignment="TOP_CENTER">
+        <!-- Header Section -->
+        <HBox styleClass="header-box" alignment="CENTER_LEFT">
+            <Button text="⬅ Back" onAction="#handleBack" styleClass="back-button"/>
+            <Label text="Bus Ticket Booking" styleClass="page-title"/>
+        </HBox>
+
+        <!-- Main Content Container -->
+        <VBox styleClass="content-container" spacing="15">
+            <!-- Form Section -->
+            <VBox styleClass="form-card" spacing="10">
+                <Label text="Enter Travel Details" styleClass="section-title"/>
+                
+                <GridPane styleClass="form-grid" hgap="15" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" prefWidth="120"/>
+                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="250"/>
+                    </columnConstraints>
+
+                    <!-- Form Fields (unchanged) -->
+                    <Label text="Full Name:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="fullNameField" styleClass="form-input" promptText="John Doe" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Age:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="ageField" styleClass="form-input" promptText="25" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Gender:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <HBox spacing="15" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                        <RadioButton fx:id="maleRadio" text="Male" styleClass="radio-button"/>
+                        <RadioButton fx:id="femaleRadio" text="Female" styleClass="radio-button"/>
+                    </HBox>
+
+                    <Label text="Source:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="sourceField" styleClass="form-input" promptText="Enter Source" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Destination:" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="destinationField" styleClass="form-input" promptText="Enter Destination" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Travel Date:" styleClass="form-label" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="travelDatePicker" styleClass="date-picker" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                </GridPane>
+            </VBox>
+           
+
+            <!-- Search Button -->
+            <Button text="🔍 Search Buses" onAction="#searchBuses" styleClass="primary-button" alignment="CENTER" />
+
+            <!-- Bus Table -->
+            <VBox styleClass="table-container">
+                <TableView fx:id="busesTable" styleClass="modern-table">
+                    <columns>
+                        <TableColumn fx:id="colBusName" text="Bus Name" styleClass="table-column" prefWidth="150"/>
+                        <TableColumn fx:id="colBusType" text="Type" styleClass="table-column" prefWidth="100"/>
+                        <TableColumn fx:id="colSource" text="From" styleClass="table-column" prefWidth="120"/>
+                        <TableColumn fx:id="colDestination" text="To" styleClass="table-column" prefWidth="120"/>
+                        <TableColumn fx:id="colTravelTime" text="Time" styleClass="table-column" prefWidth="80"/>
+                        <TableColumn fx:id="colSeatsAvailable" text="Seats" styleClass="table-column" prefWidth="70"/>
+                        <TableColumn fx:id="colPrice" text="Price" styleClass="table-column" prefWidth="90"/>
+                        <TableColumn fx:id="colDate" text="Date" styleClass="table-column" prefWidth="110"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Search buses to see available options" styleClass="placeholder-label"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+
+            <!-- Details and Seat Grid Row -->
+           <HBox styleClass="details-seat-container" alignment="CENTER">
+    <!-- Left spacing -->
+    <Region HBox.hgrow="ALWAYS" minWidth="40"/>
+    
+    <!-- Bus Details Card (left side) -->
+    <VBox styleClass="details-card" spacing="10">
+        <Label text="🚌 Selected Bus Details" styleClass="section-title"/>
+        <GridPane styleClass="details-grid" hgap="15" vgap="10">
+            <Label text="Bus Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label fx:id="lblBusName" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            
+            <Label text="Bus Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label fx:id="lblBusType" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            
+            <Label text="Route:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <Label fx:id="lblRoute" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            
+            <Label text="Travel Time:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Label fx:id="lblTravelTime" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            
+            <Label text="Seats Available:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label fx:id="lblSeats" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            
+            <Label text="Price:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Label fx:id="lblPrice" text="-" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            
+            <Label text="Date:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <Label fx:id="lblDate" text="-" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Center spacing between boxes -->
+    <Region HBox.hgrow="ALWAYS" minWidth="60"/>
+    
+    <!-- Seat Grid (right side) -->
+    <VBox styleClass="seat-container" spacing="10">
+        <Label text="💺 Select Your Seats" styleClass="section-title"/>
+        <GridPane fx:id="seatGrid" styleClass="modern-seat-grid" hgap="8" vgap="8"/>
+    </VBox>
+    
+    <!-- Right spacing -->
+    <Region HBox.hgrow="ALWAYS" minWidth="40"/>
+</HBox>
+        </VBox>
+         <!-- Confirm Button (bottom center) -->
+            <Button fx:id="btnConfirmBooking" text="✅ Confirm Booking" onAction="#confirmBooking" styleClass="confirm-button" alignment="CENTER"/>
+    </VBox>
+</ScrollPane>

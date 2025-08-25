@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddScheduleController" 
+            prefWidth="1600" prefHeight="800">
+    <children>
+        <HBox spacing="50" layoutX="30" layoutY="30" alignment="CENTER_LEFT">
+            <!-- Left Form Section -->
+            <VBox alignment="CENTER" spacing="15" prefWidth="300" prefHeight="500"
+                  style="-fx-background-color: #f8f8f8; -fx-padding: 20; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10;">
+                
+                <Label text="Add New Schedule" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Bus ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="busIdField" promptText="Bus ID" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200"/>
+                    
+                    <Label text="Bus Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="busNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200"/>
+                    
+                    <Label text="Travel Date:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <DatePicker fx:id="travelDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200"/>
+                    
+                    <Label text="Travel Time:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <TextField fx:id="travelTimeField" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200"/>
+                    
+                    <Label text="Source:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <TextField fx:id="sourceField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200"/>
+                    
+                    <Label text="Destination:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <TextField fx:id="destinationField" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="200"/>
+                    
+                    <Label text="Price:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                    <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="200"/>
+                    
+                    <Label text="Available Seats:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                    <TextField fx:id="availableSeatsField" GridPane.columnIndex="1" GridPane.rowIndex="7" prefWidth="200"/>
+                </GridPane>
+
+                <Button text="Add Schedule" onAction="#handleAddSchedule" prefWidth="200" 
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;">
+                    <tooltip><Tooltip text="Add new schedule"/></tooltip>
+                </Button>
+                
+                <Button text="Back to Dashboard" onAction="#handleBack" prefWidth="200" 
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white;">
+                    <tooltip><Tooltip text="Return to admin dashboard"/></tooltip>
+                </Button>
+            </VBox>
+
+            <!-- Right Table Section -->
+            <TableView fx:id="scheduleTable" prefWidth="1050" prefHeight="500" editable="true"
+                       style="-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #ffffff;">
+                <columns>
+                    <TableColumn fx:id="scheduleIdCol" text="Schedule ID" prefWidth="100"/>
+                    <TableColumn fx:id="busIdCol" text="Bus ID" prefWidth="80"/>
+                    <TableColumn fx:id="busNameCol" text="Bus Name" prefWidth="150"/>
+                    <TableColumn fx:id="dateCol" text="Travel Date" prefWidth="120"/>
+                    <TableColumn fx:id="timeCol" text="Travel Time" prefWidth="120"/>
+                    <TableColumn fx:id="sourceCol" text="Source" prefWidth="120"/>
+                    <TableColumn fx:id="destinationCol" text="Destination" prefWidth="120"/>
+                    <TableColumn fx:id="priceCol" text="Price" prefWidth="100"/>
+                    <TableColumn fx:id="availableSeatsCol" text="Seats" prefWidth="80"/>
+                </columns>
+            </TableView>
+        </HBox>
+    </children>
+</AnchorPane>

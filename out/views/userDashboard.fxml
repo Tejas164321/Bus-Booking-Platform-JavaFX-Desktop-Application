@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane stylesheets="@../styles/userDashboard.css" xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controllers.UserController">
+
+    <!-- Top Header Section -->
+    
+    <top>
+        <HBox styleClass="header" spacing="20" alignment="CENTER_RIGHT">
+            <Label text="Welcome Back, " styleClass="welcome-text">
+                <font>
+                    <Font name="Segoe UI Semibold" size="24" />
+                </font>
+            </Label>
+            <Button fx:id="btnLogout" styleClass="logout-btn" onAction="#handleLogout">
+                <graphic>
+                    <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                        <Image url="@../images/logout.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="40" alignment="CENTER" prefWidth="800">
+            <!-- Dashboard Header -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Ready to Travel?" styleClass="dashboard-title">
+                    <font>
+                        <Font name="Segoe UI Bold" size="36" />
+                    </font>
+                </Label>
+                <Label text="Book your next journey with one click" styleClass="dashboard-subtitle"/>
+            </VBox>
+
+            <!-- Quick Actions Grid -->
+            <GridPane hgap="30" vgap="30" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="300"/>
+                    <ColumnConstraints prefWidth="300"/>
+                </columnConstraints>
+
+                <!-- Journey Card -->
+                <VBox styleClass="action-card" GridPane.columnIndex="0">
+                    <Label text="🚌 Start New Journey" styleClass="card-title"/>
+                    <Label text="Book seats on your preferred route" styleClass="card-subtitle"/>
+                    <Button text="Book Now" styleClass="primary-btn" onAction="#handleStartJourney"/>
+                </VBox>
+
+                <!-- Quick Stats Card -->
+                <VBox styleClass="stats-card" GridPane.columnIndex="1">
+                    <Label text="📊 Your Travel Stats" styleClass="card-title"/>
+                    <VBox spacing="15">
+                        <HBox spacing="10">
+                            <Label text="Total Bookings:" styleClass="stat-label"/>
+                            <Label fx:id="lblTotalBookings" text="12" styleClass="stat-value"/>
+                        </HBox>
+                        <HBox spacing="10">
+                            <Label text="Upcoming Trips:" styleClass="stat-label"/>
+                            <Label fx:id="lblUpcomingTrips" text="3" styleClass="stat-value"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </GridPane>
+
+            <!-- Quick Links -->
+            <HBox spacing="30" alignment="CENTER">
+                <Button text="View Bookings" styleClass="secondary-btn"/>
+                <Button text="Profile Settings" styleClass="secondary-btn"/>
+                <Button text="Help Center" styleClass="secondary-btn"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
