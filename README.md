@@ -7,7 +7,7 @@
 
 A modern, user-friendly desktop application for booking bus tickets, built with JavaFX. This platform allows users to search for buses, select seats, and make bookings, while administrators can manage bus schedules and operations efficiently.
 
-## 📋 Table of Contents
+## 📋 Table of Contents.
 
 - [🚀 Overview](#-overview)
 - [✨ Features](#-features)
